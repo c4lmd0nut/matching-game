@@ -232,7 +232,7 @@ const reset = function () {
   currentLevel = 0;
   totalScore = 0;
   document.querySelector(".final-message").textContent = `YAY YOU WIN!🥳`;
-  btnNextLevel.textContent = "Play Next Level";
+  btnNextLevel.textContent = "Replay";
 
   init();
 };
