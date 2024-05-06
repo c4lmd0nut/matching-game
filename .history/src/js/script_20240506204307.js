@@ -155,7 +155,6 @@ const startGame = function () {
     card.classList.remove("hidden");
     card.classList.remove("revealed");
   });
-  if (timer) clearInterval(timer);
   startTimer();
 };
 
