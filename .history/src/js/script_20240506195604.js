@@ -242,7 +242,7 @@ const reset = function () {
   totalScore = 0;
   init();
   console.log(currentLevel);
-  console.log(containerCards);
+  console.log();
 };
 
 //first load

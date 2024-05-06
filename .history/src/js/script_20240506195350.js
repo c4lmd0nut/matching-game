@@ -241,8 +241,6 @@ const reset = function () {
   currentLevel = 0;
   totalScore = 0;
   init();
-  console.log(currentLevel);
-  console.log(containerCards);
 };
 
 //first load
