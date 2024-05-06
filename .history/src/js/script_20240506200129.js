@@ -258,51 +258,22 @@ btnContinue.addEventListener("click", function () {
   startGame();
 });
 
-//load image async
-const loadImage = function (imgUrl) {
-  return new Promise(resolve, (reject) => {
-    const revealedCardImage = new Image();
-    revealedCardImage.onload = () => resolve(revealedCardImage);
-    revealedCardImage.onerror = reject;
-    revealedCardImage.src = imgUrl;
-  });
-};
-
 // how to handle after a card is clicked
-const handleCardClick = async function (card) {
+const handleCardClick = function (card) {
   const imgRevealedFaceURL = images[card.dataset.src];
-  // card.src = imgRevealedFaceURL;
-
-  const img = await loadImage(imgRevealedFaceURL);
   card.src = imgRevealedFaceURL;
 
-  try {
-    //flipping back to cover
-    setTimeout(() => (card.src = require("../img/cover.png")), 500);
+  //flipping back to cover
+  setTimeout(() => (card.src = require("../img/cover.png")), 500);
 
-    if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-      clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
+  if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
+    clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
 
-    //prevent similar property from being added
-    card.classList.add("revealed"); //add revealed class
+  //prevent similar property from being added
+  card.classList.add("revealed"); //add revealed class
 
-    //checkMatch
-    checkMatch(clickedCardArray);
-  } catch (error) {
-    console.error("error loading image", imgRevealedFaceURL);
-  }
-
-  // //flipping back to cover
-  // setTimeout(() => (card.src = require("../img/cover.png")), 500);
-
-  // if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-  //   clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
-
-  // //prevent similar property from being added
-  // card.classList.add("revealed"); //add revealed class
-
-  // //checkMatch
-  // checkMatch(clickedCardArray);
+  //checkMatch
+  checkMatch(clickedCardArray);
 };
 
 //reset buttons
