@@ -206,8 +206,8 @@ const scoreCalculate = function () {
 };
 
 //////// initialization
-const init = function () {
-  console.log(currentLevel);
+const init = function () 
+console.log(currentLevel)
   images.length = 0;
   containerCards.innerHTML = "";
   labelScore.textContent = "0 score";
