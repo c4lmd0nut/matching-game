@@ -160,9 +160,11 @@ const startGame = function () {
 const btnNextLevel = document.querySelector(".btn-next-level");
 if (currentLevel < 2) {
   btnNextLevel.addEventListener("click", () => {
-    currentLevel++;
-    init();
-    startGame();
+    {
+      currentLevel++;
+      init();
+      startGame();
+    }
   });
 }
 
