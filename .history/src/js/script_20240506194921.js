@@ -240,8 +240,8 @@ const reset = function () {
   scoring = [];
   currentLevel = 0;
   totalScore = 0;
-  // document.querySelector(".final-message").textContent = `YAY YOU WIN!🥳`;
-  // btnNextLevel.textContent = "Play Next Level";
+  document.querySelector(".final-message").textContent = `YAY YOU WIN!🥳`;
+  btnNextLevel.textContent = "Play Next Level";
   init();
 };
 
