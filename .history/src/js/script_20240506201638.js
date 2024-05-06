@@ -177,7 +177,9 @@ const checkWin = function () {
 
     if (currentLevel === 2) {
       scoreCalculate();
-      finalMessage.textContent = `You completed all the level!\nYour final score is ${totalScore}`;
+      document.querySelector(
+        ".final-message"
+      ).textContent = `You completed all the level!\nYour final score is ${totalScore}`;
       btnNextLevel.textContent = "Replay";
       btnNextLevel.addEventListener("click", reset);
       winMessage.classList.remove("hidden");
@@ -239,7 +241,6 @@ const reset = function () {
   scoring = [];
   currentLevel = 0;
   totalScore = 0;
-  finalMessage.textContent = "YAY YOU WIN!🥳";
   init();
 };
 

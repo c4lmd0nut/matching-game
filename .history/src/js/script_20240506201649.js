@@ -239,7 +239,6 @@ const reset = function () {
   scoring = [];
   currentLevel = 0;
   totalScore = 0;
-  finalMessage.textContent = "YAY YOU WIN!🥳";
   init();
 };
 
