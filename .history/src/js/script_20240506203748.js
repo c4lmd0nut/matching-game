@@ -159,14 +159,13 @@ const startGame = function () {
 
 // next-level buttons
 const btnNextLevel = document.querySelector(".btn-next-level");
-
-btnNextLevel.addEventListener("click", () => {
-  if (currentLevel < 2) {
+if (currentLevel <= 2) {
+  btnNextLevel.addEventListener("click", () => {
     currentLevel++;
     init();
     startGame();
-  }
-});
+  });
+}
 
 //////// when you matched all === win
 const checkWin = function () {
