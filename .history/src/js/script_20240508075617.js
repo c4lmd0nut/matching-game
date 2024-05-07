@@ -74,7 +74,6 @@ const createCard = function (imgUrl) {
 
 //matching function
 const checkMatch = function (cardArray) {
-  countTurns();
   if (cardArray.length === 2) {
     if (cardArray[0].cardUrl === cardArray[1].cardUrl) {
       matchedCards++;
@@ -89,7 +88,9 @@ const checkMatch = function (cardArray) {
       cardArray.length = 0;
     }
   }
-  if (cardArray.length < 2 || cardArray > 2) return;
+  if (cardArray.length < 2 || cardArray > 2) {
+  }
+  return;
 };
 
 //tracking number of  turns
