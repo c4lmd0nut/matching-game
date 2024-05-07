@@ -299,7 +299,6 @@ const handleCardClick = async function (card) {
     })
     .then(() => {
       card.src = images.at(-1);
-      console.log(images.at(-1));
     });
 
   const img = await loadImage(imgRevealedFaceURL);

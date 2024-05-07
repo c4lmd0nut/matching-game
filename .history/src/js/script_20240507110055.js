@@ -266,41 +266,17 @@ const loadImage = function (imgUrl) {
   try {
     return new Promise((resolve, reject) => {
       const revealedCardImage = new Image();
-      revealedCardImage.src = imgUrl;
       revealedCardImage.onload = () => resolve(revealedCardImage);
-      // revealedCardImage.onerror = reject;
+      revealedCardImage.onerror = reject;
+      revealedCardImage.src = imgUrl;
     });
-  } catch (error) {
-    console.error(reject(error));
-  }
-};
-
-const wait = function (seconds) {
-  return new Promise((resolve) => setTimeout(resolve, 1000 * seconds));
+  } catch {}
 };
 
 // how to handle after a card is clicked
 const handleCardClick = async function (card) {
-  //pathway to image url that is clicked
   const imgRevealedFaceURL = images[card.dataset.src];
-
-  loadImage(imgRevealedFaceURL)
-    .then((imgUrl) => {
-      card.src = imgUrl;
-      if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-        clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
-
-      //prevent similar property from being added
-      card.classList.add("revealed"); //add revealed class
-
-      //checkMatch
-      checkMatch(clickedCardArray);
-      return wait(2);
-    })
-    .then(() => {
-      card.src = images.at(-1);
-      console.log(images.at(-1));
-    });
+  // card.src = imgRevealedFaceURL;
 
   const img = await loadImage(imgRevealedFaceURL);
   card.src = img.src;
@@ -321,31 +297,6 @@ const handleCardClick = async function (card) {
     console.error("error loading image", imgRevealedFaceURL);
   }
 };
-
-// // how to handle after a card is clicked
-// const handleCardClick = async function (card) {
-//   //pathway to image url that is clicked
-//   const imgRevealedFaceURL = images[card.dataset.src];
-
-//   const img = await loadImage(imgRevealedFaceURL);
-//   card.src = img.src;
-
-//   try {
-//     //flipping back to cover
-//     setTimeout(() => (card.src = require("../img/cover.png")), 500);
-
-//     if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-//       clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
-
-//     //prevent similar property from being added
-//     card.classList.add("revealed"); //add revealed class
-
-//     //checkMatch
-//     checkMatch(clickedCardArray);
-//   } catch (error) {
-//     console.error("error loading image", imgRevealedFaceURL);
-//   }
-// };
 
 //reset buttons
 btnReset.forEach((button) =>

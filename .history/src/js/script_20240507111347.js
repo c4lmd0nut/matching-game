@@ -284,23 +284,20 @@ const handleCardClick = async function (card) {
   //pathway to image url that is clicked
   const imgRevealedFaceURL = images[card.dataset.src];
 
-  loadImage(imgRevealedFaceURL)
-    .then((imgUrl) => {
-      card.src = imgUrl;
-      if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-        clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
+  loadImage(imgRevealedFaceURL).then((imgUrl) => {
+    card.src = imgUrl;
+    if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
+      clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
 
-      //prevent similar property from being added
-      card.classList.add("revealed"); //add revealed class
+    //prevent similar property from being added
+    card.classList.add("revealed"); //add revealed class
 
-      //checkMatch
-      checkMatch(clickedCardArray);
-      return wait(2);
-    })
-    .then(() => {
-      card.src = images.at(-1);
-      console.log(images.at(-1));
-    });
+    //checkMatch
+    checkMatch(clickedCardArray);
+    return wait(2);
+  }).then(()=>{
+    card.
+  });
 
   const img = await loadImage(imgRevealedFaceURL);
   card.src = img.src;

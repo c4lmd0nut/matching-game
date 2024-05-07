@@ -275,32 +275,12 @@ const loadImage = function (imgUrl) {
   }
 };
 
-const wait = function (seconds) {
-  return new Promise((resolve) => setTimeout(resolve, 1000 * seconds));
-};
-
 // how to handle after a card is clicked
 const handleCardClick = async function (card) {
   //pathway to image url that is clicked
   const imgRevealedFaceURL = images[card.dataset.src];
 
-  loadImage(imgRevealedFaceURL)
-    .then((imgUrl) => {
-      card.src = imgUrl;
-      if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-        clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
-
-      //prevent similar property from being added
-      card.classList.add("revealed"); //add revealed class
-
-      //checkMatch
-      checkMatch(clickedCardArray);
-      return wait(2);
-    })
-    .then(() => {
-      card.src = images.at(-1);
-      console.log(images.at(-1));
-    });
+  loadImage(imgRevealedFaceURL).then((imgUrl) => (card.src = imgUrl));
 
   const img = await loadImage(imgRevealedFaceURL);
   card.src = img.src;
