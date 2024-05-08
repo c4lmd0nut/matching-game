@@ -290,21 +290,6 @@ const gameApp = function () {
     }
   };
 
-  ////preload images for optimization
-  const preloadImages = async function (imgUrls) {
-    const imagePromises = imgUrls.map(async (url) => {
-      const img = await loadImage(url);
-      return img;
-    });
-    return Promise.all(imagePromises);
-  };
-
-  preloadImages(Object.values(images))
-    .then(() => {
-      console.log("img preloaded");
-    })
-    .catch((error) => console.error("error:", error));
-
   // how to handle after a card is clicked
   const handleCardClick = async function (card) {
     try {

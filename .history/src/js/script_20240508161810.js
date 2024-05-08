@@ -299,11 +299,9 @@ const gameApp = function () {
     return Promise.all(imagePromises);
   };
 
-  preloadImages(Object.values(images))
-    .then(() => {
-      console.log("img preloaded");
-    })
-    .catch((error) => console.error("error:", error));
+  preloadImages(Object.values(images)).then(() => {
+    imgpro;
+  });
 
   // how to handle after a card is clicked
   const handleCardClick = async function (card) {
