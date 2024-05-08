@@ -13,7 +13,7 @@ const winMessage = document.querySelector(".win-message");
 const loseMessage = document.querySelector(".lose-message");
 const startButton = document.querySelector(".btn-start");
 const btnContinue = document.querySelector(".btn-cont");
-const btnReset = document.querySelectorAll(".btn-reset");
+const btnReset = document.querySelector(".btn-reset");
 const labelTimer = document.querySelector(".counter-timer");
 const labelTurn = document.querySelector(".counter-turn");
 const labelScore = document.querySelector(".counter-score");
@@ -319,7 +319,7 @@ const gameApp = function () {
   };
 
   //reset buttons
-  btnReset.forEach((button) => addEventListener("click", reset));
+  btnReset.addEventListener("click", reset);
 };
 
 // // check if final matches are won
