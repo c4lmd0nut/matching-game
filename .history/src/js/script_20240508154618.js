@@ -169,7 +169,7 @@ const gameApp = function () {
   const nextLevelFunction = function () {
     btnNextLevel.addEventListener("click", () => {
       if (currentLevel < 2) {
-        currentLevel++; //////
+        currentLevel++;
         init();
         startGame();
         console.log(btnNextLevel);
@@ -260,7 +260,7 @@ const gameApp = function () {
     totalScore = 0;
     finalMessage.textContent = "YAY YOU WIN!🥳";
     btnNextLevel.textContent = "Play Next Level";
-    // nextLevelFunction(); //btn next level revert back to the next level function
+    nextLevelFunction(); //btn next level revert back to the next level function
     init();
   };
 
