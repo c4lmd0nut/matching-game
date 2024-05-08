@@ -328,6 +328,6 @@ const gameApp = function () {
 //  btnNextLevel.addEventListener("click", reset);
 gameApp();
 
-document.querySelector(".replay").addEventListener("click", function (e) {
+document.querySelector(".replay").addEventListener("click", function () {
   gameApp;
 });
