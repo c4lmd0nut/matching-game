@@ -185,9 +185,9 @@ const checkWin = function () {
 
     if (currentLevel === 2) {
       scoreCalculate();
-      // finalMessage.textContent = `You completed all the level!\nYour final score is ${totalScore}`;
-      // btnNextLevel.textContent = "Replay";
-      // btnNextLevel.addEventListener("click", reset);
+      finalMessage.textContent = `You completed all the level!\nYour final score is ${totalScore}`;
+      btnNextLevel.textContent = "Replay";
+      btnNextLevel.addEventListener("click", reset);
       winMessage.classList.remove("hidden");
     }
   }
@@ -313,8 +313,3 @@ const handleCardClick = async function (card) {
 
 //reset buttons
 btnReset.addEventListener("click", reset);
-
-// // check if final matches are won
-//  finalMessage.textContent = `You completed all the level!\nYour final score is ${totalScore}`;
-//  btnNextLevel.textContent = "Replay";
-//  btnNextLevel.addEventListener("click", reset);
