@@ -72,6 +72,35 @@ const createCard = function (imgUrl) {
   }
 };
 
+//matching function
+const checkMatch = function (cardArray) {
+  console.log(btnContinue);
+  console.log(btnNextLevel);
+  countTurns();
+  if (cardArray.length === 2) {
+    if (cardArray[0].cardUrl === cardArray[1].cardUrl) {
+      matchedCards++;
+      setTimeout(() => {
+        cardArray.forEach((cc) => cc.cardHTML.classList.add("hidden"));
+        cardArray.length = 0;
+        //what happens if you win
+        checkWin();
+      }, 100);
+    } else {
+      cardArray.forEach((cc) => cc.cardHTML.classList.remove("revealed"));
+      cardArray.length = 0;
+    }
+  }
+  if (cardArray.length < 2) return;
+};
+
+//tracking number of  turns
+const countTurns = function () {
+  totalTurns++;
+  labelTurn.textContent = `${totalTurns} turns`;
+  return totalTurns;
+};
+
 // timer
 const startTimer = function () {
   const tick = function () {
@@ -111,12 +140,11 @@ const selectCardEl = function () {
 
 //listen to event when the card is clicked
 const cardEventListener = () => {
-  cardsEl.forEach((card) => card.addEventListener("click", handleCardClick));
-  // cardsEl.forEach((card) =>
-  //   card.addEventListener("click", function (e) {
-  //     handleCardClick(card);
-  //   })
-  // );
+  cardsEl.forEach((card) =>
+    card.addEventListener("click", function (e) {
+      handleCardClick(card);
+    })
+  );
 };
 
 //start the game function
@@ -134,73 +162,16 @@ const startGame = function () {
   startTimer();
 };
 
-//tracking number of  turns
-const countTurns = function () {
-  totalTurns++;
-  labelTurn.textContent = `${totalTurns} turns`;
-  return totalTurns;
-};
+// next-level buttons
+const btnNextLevel = document.querySelector(".btn-next-level");
 
-//matching function
-const checkMatch = function (cardArray) {
-  console.log(btnContinue);
-  console.log(btnNextLevel);
-  countTurns();
-  if (cardArray.length === 2) {
-    if (cardArray[0].cardUrl === cardArray[1].cardUrl) {
-      matchedCards++;
-      setTimeout(() => {
-        cardArray.forEach((cc) => cc.cardHTML.classList.add("hidden"));
-        cardArray.length = 0;
-        //what happens if you win
-        checkWin();
-      }, 100);
-    } else {
-      cardArray.forEach((cc) => cc.cardHTML.classList.remove("revealed"));
-      cardArray.length = 0;
-    }
+btnNextLevel.addEventListener("click", () => {
+  if (currentLevel < 2) {
+    currentLevel++;
+    init();
+    startGame();
   }
-  if (cardArray.length < 2) return;
-};
-
-//load image async
-const loadImage = function (imgUrl) {
-  try {
-    return new Promise((resolve, reject) => {
-      const revealedCardImage = new Image();
-      revealedCardImage.src = imgUrl;
-      revealedCardImage.onload = () => resolve(revealedCardImage);
-      // revealedCardImage.onerror = reject;
-    });
-  } catch (error) {
-    console.error(reject(error));
-  }
-};
-
-// how to handle after a card is clicked
-const handleCardClick = async function (card) {
-  try {
-    //pathway to image url that is clicked
-    const imgRevealedFaceURL = images[card.dataset.src];
-
-    const img = await loadImage(imgRevealedFaceURL);
-    card.src = img.src;
-
-    //flipping back to cover
-    setTimeout(() => (card.src = require("../img/cover.png")), 500);
-
-    if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
-      clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
-
-    //prevent similar property from being added
-    card.classList.add("revealed"); //add revealed class
-
-    //checkMatch
-    checkMatch(clickedCardArray);
-  } catch (error) {
-    console.error("error loading image", imgRevealedFaceURL);
-  }
-};
+});
 
 //////// when you matched all === win
 const checkWin = function () {
@@ -293,16 +264,48 @@ btnContinue.addEventListener("click", function () {
   startGame();
 });
 
-// next-level buttons
-const btnNextLevel = document.querySelector(".btn-next-level");
-
-btnNextLevel.addEventListener("click", () => {
-  if (currentLevel < 2) {
-    currentLevel++;
-    init();
-    startGame();
+//load image async
+const loadImage = function (imgUrl) {
+  try {
+    return new Promise((resolve, reject) => {
+      const revealedCardImage = new Image();
+      revealedCardImage.src = imgUrl;
+      revealedCardImage.onload = () => resolve(revealedCardImage);
+      // revealedCardImage.onerror = reject;
+    });
+  } catch (error) {
+    console.error(reject(error));
   }
-});
+};
+
+// const wait = function (seconds) {
+//   return new Promise((resolve) => setTimeout(resolve, 1000 * seconds));
+// };
+
+// how to handle after a card is clicked
+const handleCardClick = async function (card) {
+  try {
+    //pathway to image url that is clicked
+    const imgRevealedFaceURL = images[card.dataset.src];
+
+    const img = await loadImage(imgRevealedFaceURL);
+    card.src = img.src;
+
+    //flipping back to cover
+    setTimeout(() => (card.src = require("../img/cover.png")), 500);
+
+    if (clickedCardArray.length < 2 && !card.classList.contains("revealed"))
+      clickedCardArray.push({ cardUrl: `${card.src}`, cardHTML: card });
+
+    //prevent similar property from being added
+    card.classList.add("revealed"); //add revealed class
+
+    //checkMatch
+    checkMatch(clickedCardArray);
+  } catch (error) {
+    console.error("error loading image", imgRevealedFaceURL);
+  }
+};
 
 //reset buttons
-btnReset.addEventListener("click", reset);
+btnReset.addEventListener("click", () => reset());
