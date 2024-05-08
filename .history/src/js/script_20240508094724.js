@@ -236,6 +236,7 @@ const init = function () {
 
   selectCardEl();
   cardEventListener();
+  nextLevelFunction(); //new
 };
 
 // reset
@@ -244,8 +245,6 @@ const reset = function () {
   currentLevel = 0;
   totalScore = 0;
   finalMessage.textContent = "YAY YOU WIN!🥳";
-  btnNextLevel.textContent = "Play Next Level";
-  nextLevelFunction(); //new
   init();
 };
 
