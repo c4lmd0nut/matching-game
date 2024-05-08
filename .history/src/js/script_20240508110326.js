@@ -322,4 +322,4 @@ const gameApp = function () {
 //  btnNextLevel.textContent = "Replay";
 //  btnNextLevel.addEventListener("click", reset);
 
-document.querySelector(".replay").addEventListener("click", gameApp);
+document.querySelector(".replay").addEventListener("click", function () {});
