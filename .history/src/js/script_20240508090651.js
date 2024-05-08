@@ -174,12 +174,13 @@ const loadImage = function (imgUrl) {
 
 // how to handle after a card is clicked
 const handleCardClick = async function (card) {
-  //pathway to image url that is clicked
   const imgRevealedFaceURL = images[card.dataset.src];
 
   const img = await loadImage(imgRevealedFaceURL);
   card.src = img.src;
   try {
+    //pathway to image url that is clicked
+
     //flipping back to cover
     setTimeout(() => (card.src = require("../img/cover.png")), 500);
 
