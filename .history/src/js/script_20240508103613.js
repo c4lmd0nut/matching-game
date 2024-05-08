@@ -248,6 +248,7 @@ const init = function () {
 // reset
 const reset = function () {
   scoring.length = 0;
+
   currentLevel = 0;
   totalScore = 0;
   finalMessage.textContent = "YAY YOU WIN!🥳";
@@ -257,7 +258,7 @@ const reset = function () {
 };
 
 //first load
-document.addEventListener("DOMContentLoaded", reset);
+document.reset();
 
 ///// Events
 //when click start button

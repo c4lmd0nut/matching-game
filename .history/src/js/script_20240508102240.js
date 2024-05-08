@@ -20,24 +20,19 @@ const labelScore = document.querySelector(".counter-score");
 const currentScore = document.querySelector(".current-score");
 const finalMessage = document.querySelector(".final-message");
 //////// global variables
-//retain through game levels
-let currentLevel = 0;
-let scoring = [];
-let totalScore;
-
-//change whenever level changes
 const images = [];
 const clickedCardArray = [];
 let matchedCards = 0;
 let totalTurns = 0;
-let timer; //tracking if timer is true/false
 let timeCompleted = 0;
+let scoring = [];
 let cardsEl;
-
-//based on current level
+let currentLevel = 0;
 let totalCards;
 let totalMatches;
 let totalGameTime;
+let totalScore;
+let timer; //tracking if timer is true/false
 
 const gameVariables = function () {
   if (currentLevel === 0) {
@@ -217,12 +212,11 @@ const updateScoreText = () => {
 };
 
 //////// initialization
-//changes everytime level
 const init = function () {
+  images.length = 0;
   containerCards.innerHTML = "";
   labelScore.textContent = "0 score";
   labelTurn.textContent = "0 turns";
-  images.length = 0;
   matchedCards = 0;
   totalTurns = 0;
   gameVariables();
@@ -248,16 +242,17 @@ const init = function () {
 // reset
 const reset = function () {
   scoring.length = 0;
+
   currentLevel = 0;
   totalScore = 0;
   finalMessage.textContent = "YAY YOU WIN!🥳";
   btnNextLevel.textContent = "Play Next Level";
-  nextLevelFunction(); //btn next level revert back to the next level function
+  nextLevelFunction(); //new
   init();
 };
 
 //first load
-document.addEventListener("DOMContentLoaded", reset);
+reset();
 
 ///// Events
 //when click start button
