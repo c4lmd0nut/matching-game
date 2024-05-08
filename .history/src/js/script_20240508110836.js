@@ -191,9 +191,6 @@ const gameApp = function () {
         // btnNextLevel.textContent = "Replay";
         // btnNextLevel.addEventListener("click", reset);
         // winMessage.classList.remove("hidden");
-        document.querySelector(
-          ".total-score"
-        ).textContent = `Total Score: ${totalScore}`;
         completedMessage.classList.remove("hidden");
       }
     }

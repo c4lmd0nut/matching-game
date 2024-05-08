@@ -191,9 +191,6 @@ const gameApp = function () {
         // btnNextLevel.textContent = "Replay";
         // btnNextLevel.addEventListener("click", reset);
         // winMessage.classList.remove("hidden");
-        document.querySelector(
-          ".total-score"
-        ).textContent = `Total Score: ${totalScore}`;
         completedMessage.classList.remove("hidden");
       }
     }
@@ -244,7 +241,6 @@ const gameApp = function () {
     containerCards.classList.add("hidden");
     loseMessage.classList.add("hidden");
     winMessage.classList.add("hidden");
-    completedMessage.classList.add("hidden");
     labelTimer.classList.add("hidden");
     labelTurn.classList.add("hidden");
     labelScore.classList.add("hidden");
